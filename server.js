@@ -37,6 +37,7 @@ const userSchema = new Schema({
   name: String,
   age: Number,
   alive: Boolean,
+  email: String,
 });
 
 // model for user data in mongoDB database
