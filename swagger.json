@@ -1,0 +1,366 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Top Music API"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "songs",
+      "description": "Endpoints for accessing songs"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get API information",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "API information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "responseMessage": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "methods": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/songs": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "query",
+            "description": "Filter songs by genre",
+            "type": "string"
+          },
+          {
+            "name": "danceability",
+            "in": "query",
+            "description": "Filter songs by danceability",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/songs/artist/{artistName}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs by artist",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artistName",
+            "in": "path",
+            "description": "Name of the artist",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/songs/artist/{artistName}/genre/{genre}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs by artist and genre",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artistName",
+            "in": "path",
+            "description": "Name of the artist",
+            "type": "string"
+          },
+          {
+            "name": "genre",
+            "in": "path",
+            "description": "Genre of the song",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/songs/genre/{genre}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs by genre",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "path",
+            "description": "Genre of the song",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/songs/danceability/{danceability}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs by danceability",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "danceability",
+            "in": "path",
+            "description": "Danceability of the song",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/songs/artist/{artistName}/danceability/{danceability}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs by artist and danceability",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artistName",
+            "in": "path",
+            "description": "Name of the artist",
+            "type": "string"
+          },
+          {
+            "name": "danceability",
+            "in": "path",
+            "description": "Danceability of the song",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/songs/artist/{artistName}/genre/{genre}/danceability/{danceability}": {
+      "get": {
+        "tags": ["songs"],
+        "summary": "Get songs by artist, genre and danceability",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artistName",
+            "in": "path",
+            "description": "Name of the artist",
+            "type": "string"
+          },
+          {
+            "name": "genre",
+            "in": "path",
+            "description": "Genre of the song",
+            "type": "string"
+          },
+          {
+            "name": "danceability",
+            "in": "path",
+            "description": "Danceability of the song",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of songs",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Song"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Song": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "artist": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "danceability": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}
