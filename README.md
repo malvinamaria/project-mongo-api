@@ -12,3 +12,6 @@ Describe how you approached to problem, and what tools and techniques you used t
 
 https://project-mongo-api-4yp4ksq4oa-lz.a.run.app/
 
+## Swagger
+https://project-mongo-api-4yp4ksq4oa-lz.a.run.app//api-docs/
+
